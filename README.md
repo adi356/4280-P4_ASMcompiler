@@ -15,7 +15,7 @@ Problem with INn (?)
 
 Failing the second test file due to a static semantics error -> slightly edited test to find error still failing
 
-UPDATE: got it to recognize load, stack operation logic still seems incorrect but at least outputing correct number in VirtMach
+UPDATE: got it to recognize load, stack operation logic still seems incorrect but at least outputing correct number in VirtMach for some tests (NOT all)
 
 ## Task
 

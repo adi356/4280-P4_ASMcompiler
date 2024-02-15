@@ -43,9 +43,6 @@ void recGen(node *n, int *temp, ofstream* output) {
             //staticSemantics(n -> c1, temp, output);
             argR = newName(VAR);
             *output << "READ " << argR << endl;
-            *output << "LOAD " << argR << endl;
-            *output << "STACKW " << stackID.find(n -> tk1, 2) << endl;
-            // *output << "STACKW " << stackID.find(n -> tk1, 2) << endl;
             break;
 
         case OUTn:
@@ -141,33 +138,21 @@ void recGen(node *n, int *temp, ofstream* output) {
 
         //TODO: this also seems to be contributing to LOAD issue
         case Rn:
-            // if (n -> c1 == nullptr) {
-            //     if (n -> tk1.tokenType == IDENTIFIER_tk) {
-            //         argR = newName(VAR);
-            //         *output << "LOAD " << argR << endl;
-            //         *output << "PUSH\nSTACKW 0" << endl;
-            //     } else if (n -> tk1.tokenType == INTEGER_tk) {
-            //         argR = newName(VAR);
-            //         *output << "LOAD " << argR << endl;
-            //         *output << "PUSH\nSTACKW 0" << endl;
-            //     }
-            // } else {
-            //     staticSemantics(n -> c1, temp, output);
-            // }
-            // break;
+            if (n -> c1 == nullptr) {
+                 if (n -> tk1.tokenType == IDENTIFIER_tk) {
+                     argR = newName(VAR);
+                     *output << "LOAD " << n -> tk1.tokenInstance << endl;
+                     *output << "PUSH\nSTACKW 0" << endl;
+                 } else if (n -> tk1.tokenType == INTEGER_tk) {
+                     argR = newName(VAR);
+                     *output << "LOAD " << n -> tk1.tokenInstance << endl;
+                     *output << "PUSH\nSTACKW 0" << endl;
+                 }
+             } else {
+                 staticSemantics(n -> c1, temp, output);
+             }
+             break;
 
-            if (n-> c1 == nullptr) { 
-				if (n-> tk1.tokenType == IDENTIFIER_tk) { 
-					*output << "STACKR " << stack_t << endl; 
-				} else if (n->tk1.tokenType == INTEGER_tk) { 
-					*output << "LOAD " << n-> tk1.tokenInstance << endl; 
-				}
-			} else { 
-				staticSemantics(n-> c1, temp, output); 
-			} 
-			break;
-
-        
         case LOOPn:
             label1 = newName(LABEL);
             *output << label1 << ": NOOP" << endl;
