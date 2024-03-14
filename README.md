@@ -23,13 +23,10 @@ UPDATE: got it to recognize load, stack operation logic still seems incorrect bu
 ```
 <program> -> <vars> xopen <stats> xclose
 <vars>    -> empty | xdata <varList>
-<varList> -> identifier : integer <Y>
-<Y>       -> ; | <varList>
-<exp>     -> <M> <X>
-<X>       -> / <exp> | * <exp> | empty
-<M>       -> <N> <Z>
-<Z>       -> + <M> | empty
-<N>       -> <R> - <N> | ~<N> | <R>
+<varList> -> identifier : integer ; | identifier : integer <varList>
+<exp>     -> <M> / <exp> | <M> * <exp> | <M>
+<M>       -> <N> + <M> | <N>
+<N>       -> <R> - <N> | ~ <N> | <R>
 <R>       -> ( <exp> ) | identifier | integer
 <stats>   -> <stat> <mStat>
 <mStat>   -> empty | <stat> <mStat>
