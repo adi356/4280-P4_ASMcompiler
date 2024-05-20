@@ -1,4 +1,4 @@
-# 4280 Project 4 ASM compiler
+# Compilers Project 4 ASM compiler
 
 ## How to run
 1. run make clean command to clean any old builds
